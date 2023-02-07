@@ -1,0 +1,48 @@
+type OrderDish @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  quantity: Int!
+  orderID: ID! @index(name: "byOrder")
+  Dish: Dish @hasOne
+}
+
+enum OrderStatus {
+  PENDING
+  COMPLETED
+  ACCEPTED
+  DECLINED
+}
+
+type Order @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  total: Float!
+  status: OrderStatus!
+  userID: ID! @index(name: "byUser")
+  Restaurant: Restaurant @hasOne
+  OrderDishes: [OrderDish] @hasMany(indexName: "byOrder", fields: ["id"])
+}
+
+type User @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  address: String!
+  sub: String!
+  Orders: [Order] @hasMany(indexName: "byUser", fields: ["id"])
+}
+
+type Dish @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  description: String!
+  price: Float!
+  image: String
+  restaurantID: ID! @index(name: "byRestaurant")
+}
+
+type Restaurant @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String!
+  address: String!
+  image: String!
+  adminSub: String
+  Dishes: [Dish] @hasMany(indexName: "byRestaurant", fields: ["id"])
+}
