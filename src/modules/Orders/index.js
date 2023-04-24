@@ -75,6 +75,7 @@ const Orders = () => {
 const styles = {
     page: {
         margin: 20,
+        
     },
 }
 
