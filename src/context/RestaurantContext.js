@@ -14,9 +14,6 @@ const RestaurantContextProvider = ({children}) => {
         Auth.currentAuthenticatedUser({bypassCache: true}).then(setUser);
     }, []);
 
-    //console.log(user);
-    //console.log(sub);
-
     useEffect(() => {
         if (!sub) {
             return;
