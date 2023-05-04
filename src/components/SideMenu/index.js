@@ -17,7 +17,7 @@ const SideMenu = () => {
         {
             key: 'menu',
             label: 'Restaurant Menu'
-        }
+        },
     ];
 
     const menuItems = [
@@ -25,6 +25,10 @@ const SideMenu = () => {
         {
             key: 'restaurant',
             label: 'Create Restaurant'
+        },
+        {
+            key: 'otherRestaurants',
+            label: 'Other Restaurants'
         },
         {
             key: 'signout',
